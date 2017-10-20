@@ -11,8 +11,8 @@ This code is a work in progress following JG's Learning Akka Book. The current p
 2. Chapter 2:
     1. General Learning:
         - [x] Write an Actor that reverses a string, have it fail for unknown message types
-        - [ ] Write a service to exposes the functionality through a plain Scala API, returning a future
-        - [ ] Build Unit Tests for Successes and Failures
+        - [x] Write a service to exposes the functionality through a plain Scala API, returning a future
+        - [x] Build Unit Tests for Successes and Failures
         - [ ] Write a test which will send a `List[String]` and validate the results
     2. Project Homework:
         - [ ] Add an atomic `SetIfNotExists` and `DeleteKey` to the ` AkkaDbServerActor`
