@@ -7,6 +7,7 @@ import scala.collection.mutable
 
 case class SetRequest(key: String, value: Object)
 case class GetRequest(key: String)
+case class QueryRequest(key: String)
 case class KeyNotFoundException(key: String) extends Exception
 
 class DbServerActor extends Actor {
@@ -25,6 +26,13 @@ class DbServerActor extends Actor {
         case Some(a) => sender() ! a
         case None => sender() ! Status.Failure(new KeyNotFoundException(key))
       }
+    }
+    case QueryRequest(key) => {
+      log.info(s"Received QueryRequest - key: $key")
+      val response = for {
+        k <- map.keys if k.contains(key)
+      } yield k
+      sender() ! response
     }
     case _ => Status.Failure(new ClassNotFoundException)
   }

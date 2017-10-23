@@ -3,7 +3,7 @@ package com.akkadb.akkadbclient
 import akka.actor.ActorSystem
 import akka.util.Timeout
 import akka.pattern.ask
-import com.akkadb.dbserveractor.{GetRequest, SetRequest}
+import com.akkadb.dbserveractor.{GetRequest, SetRequest, QueryRequest}
 
 import scala.concurrent.duration._
 
@@ -18,6 +18,10 @@ class AkkaDbClient(remoteAddress: String) {
 
   def get(key: String) = {
     remoteDb ? GetRequest(key)
+  }
+
+  def query(key: String) = {
+    remoteDb ? QueryRequest(key)
   }
 }
 

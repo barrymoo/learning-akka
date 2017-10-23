@@ -24,5 +24,13 @@ class StringReverseActorTest extends FunSpecLike with Matchers {
       val response = Await.result(future, 1 seconds)
       assert(response == Status.Failure)
     }
+    it("should reverse all seq items") {
+      val l = Seq("hello", "world")
+      val lfs = for {
+        s <- l
+        f = stringReverseActor ? s
+      } yield Await.result(f, 1 seconds)
+      assert(lfs == Seq("olleh", "dlrow"))
+    }
   }
 }
